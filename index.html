@@ -367,6 +367,7 @@
     text-align:center; padding:36px 24px; font-size:12px; letter-spacing:0.04em;
   }
   footer .fname{font-family:'Shippori Mincho',serif; color:var(--cream); font-size:15px; letter-spacing:0.1em; margin-bottom:8px;}
+  footer .visit-counter{margin-top:16px; font-size:11px; color:rgba(243,237,225,0.45); letter-spacing:0.04em;}
 
   @media (prefers-reduced-motion: reduce){
     *{transition:none !important; scroll-behavior:auto !important;}
@@ -667,12 +668,9 @@
 <footer>
   <div class="fname">坂本屋</div>
   <div>岐阜県瑞浪市土岐町4481　|　8:00–19:00　|　定休日 三が日のみ</div>
+  <div class="visit-counter">このホームページのアクセス数: <span id="visit-count">--</span> 回</div>
 </footer>
 
 <script>
   const form = document.getElementById('contactForm');
-  const status = document.getElementById('formStatus');
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    const name = document.getElementById('name').value;
-    const tel = document.getElementBy
+  const status = docume
