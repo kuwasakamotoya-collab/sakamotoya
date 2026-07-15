@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>坂本屋 | 竹炭・竹酢液と瑞浪の山の恵み</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap');
+
+  :root{
+    --ink:#2B2622;
+    --forest:#3A4A32;
+    --forest-deep:#2A3624;
+    --clay:#8B6F47;
+    --cream:#F3EDE1;
+    --cream-deep:#EAE1CC;
+    --paper:#FBF8F2;
+    --vermilion:#B5482D;
+    --line: rgba(43,38,34,0.15);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3, .mincho{
+    font-family:'Shippori Mincho', serif;
+  }
+
+  a{color:inherit;}
+
+  img{max-width:100%; display:block;}
+
+  /* ---------- background texture ---------- */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(139,111,71,0.05), transparent 40%),
+      radial-gradient(circle at 85% 60%, rgba(58,74,50,0.06), transparent 45%);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px; position:relative; z-index:1;}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(243,237,225,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px; max-width:1080px; margin:0 auto;
+  }
+  .brand{
+    font-size:20px; letter-spacing:0.08em; font-weight:700; color:var(--forest-deep);
+  }
+  .brand small{display:block; font-family:'Zen Kaku Gothic New',sans-serif; font-size:11px; letter-spacing:0.15em; color:var(--clay); font-weight:400; margin-top:2px;}
+  nav.links{display:flex; gap:28px; font-size:14px;}
+  nav.links a{text-decoration:none; color:var(--ink); position:relative; padding-bottom:3px;}
+  nav.links a::after{
+    content:""; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--vermilion);
+    transition:width .25s ease;
+  }
+  nav.links a:hover::after{width:100%;}
+  @media (max-width:700px){ nav.links{display:none;} }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:96px 24px 80px;
+    background:
+      linear-gradient(180deg, rgba(58,74,50,0.94) 0%, rgba(42,54,36,0.97) 100%);
+    color:var(--cream);
+    overflow:hidden;
+  }
+  .hero::before{
+    /* bamboo stripe motif */
+    content:"";
+    position:absolute; inset:0;
+    background-image:repeating-linear-gradient(
+      100deg,
+      rgba(255,255,255,0.035) 0px,
+      rgba(255,255,255,0.035) 2px,
+      transparent 2px,
+      transparent 64px
+    );
+    opacity:0.7;
+  }
+  .hero-inner{max-width:1080px; margin:0 auto; position:relative; z-index:2;}
+  .eyebrow{
+    display:inline-block;
+    font-size:12px; letter-spacing:0.35em; color:#C9B98E;
+    border:1px solid rgba(201,185,142,0.5);
+    padding:6px 14px; border-radius:2px;
+    margin-bottom:28px;
+  }
+  .hero h1{
+    font-size:clamp(32px, 5.4vw, 56px);
+    line-height:1.5;
+    font-weight:700;
+    letter-spacing:0.03em;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:#D8CBA0;
+    display:block;
+    font-size:0.55em;
+    letter-spacing:0.2em;
+    margin-top:14px;
+  }
+  .hero p.lead{
+    margin-top:28px; max-width:520px;
+    font-size:15.5px; color:rgba(243,237,225,0.85);
+    line-height:2.05;
+  }
+  .hero-meta{
+    margin-top:44px; display:flex; gap:36px; flex-wrap:wrap;
+    font-size:13px; color:#C9B98E; letter-spacing:0.04em;
+  }
+  .hero-meta div span{display:block; color:var(--cream); font-size:15px; margin-top:4px; font-family:'Shippori Mincho',serif;}
+
+  /* ---------- section shell ---------- */
+  section{padding:88px 0;}
+  .section-head{margin-bottom:52px; text-align:center;}
+  .section-head .tag{
+    font-size:12px; letter-spacing:0.3em; color:var(--clay); font-weight:500;
+  }
+  .section-head h2{
+    font-size:clamp(24px,3.4vw,34px); margin-top:14px; color:var(--forest-deep);
+    letter-spacing:0.06em;
+  }
+  .section-head .rule{
+    width:44px; height:2px; background:var(--vermilion); margin:20px auto 0;
+  }
+
+  /* ---------- intro / story ---------- */
+  .story{
+    display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;
+  }
+  @media (max-width:800px){ .story{grid-template-columns:1fr;} }
+  .story .txt p{margin-bottom:18px; font-size:15px; color:#3d372f;}
+  .story .frame{
+    background:var(--paper);
+    border:1px solid var(--line);
+    padding:8px;
+    box-shadow:0 18px 40px -22px rgba(43,38,34,0.35);
+  }
+  .story .frame img{width:100%; height:100%; object-fit:cover; aspect-ratio:4/5;}
+  .story .frame-cap{
+    font-size:12px; color:var(--clay); text-align:center; padding-top:10px; letter-spacing:0.05em;
+  }
+
+  /* ---------- products ---------- */
+  .products{background:var(--paper); position:relative;}
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+    gap:28px;
+  }
+  .card{
+    background:var(--cream);
+    border:1px solid var(--line);
+    position:relative;
+    display:flex; flex-direction:column;
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .card:hover{transform:translateY(-4px); box-shadow:0 20px 36px -20px rgba(43,38,34,0.4);}
+  .card .tag-corner{
+    position:absolute; top:0; left:18px;
+    background:var(--vermilion); color:var(--cream);
+    font-size:11px; letter-spacing:0.1em;
+    padding:5px 10px 6px;
+    font-family:'Shippori Mincho', serif;
+  }
+  .card .imgwrap{
+    aspect-ratio:1/1; overflow:hidden; border-bottom:1px solid var(--line);
+    background:#fff;
+  }
+  .card .imgwrap img{width:100%; height:100%; object-fit:cover;}
+  .card .body{padding:20px 20px 22px; display:flex; flex-direction:column; flex:1;}
+  .card h3{font-size:17px; color:var(--forest-deep); letter-spacing:0.03em; margin-bottom:8px;}
+  .card p.desc{font-size:13px; color:#6b6255; flex:1; margin-bottom:14px;}
+  .card .price{
+    display:flex; align-items:baseline; justify-content:space-between;
+    border-top:1px dashed var(--line); padding-top:12px;
+  }
+  .card .price .yen{font-family:'Shippori Mincho',serif; font-size:20px; color:var(--vermilion); font-weight:700;}
+  .card .price .unit{font-size:11px; color:var(--clay);}
+
+  /* ---------- flow ---------- */
+  .flow-wrap{background:var(--forest-deep); color:var(--cream);}
+  .flow-wrap .section-head .tag{color:#C9B98E;}
+  .flow-wrap .section-head h2{color:var(--cream);}
+  .flow{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+    position:relative;
+  }
+  @media (max-width:800px){ .flow{grid-template-columns:1fr; gap:36px;} }
+  .flow .step{
+    padding:0 20px; text-align:center; position:relative;
+  }
+  .flow .step:not(:last-child)::after{
+    content:"";
+    position:absolute; top:26px; right:-6px;
+    width:12px; height:12px;
+    border-top:1px solid rgba(243,237,225,0.4);
+    border-right:1px solid rgba(243,237,225,0.4);
+    transform:rotate(45deg);
+  }
+  @media (max-width:800px){ .flow .step:not(:last-child)::after{display:none;} }
+  .flow .num{
+    font-family:'Shippori Mincho',serif; font-size:13px; color:#C9B98E;
+    letter-spacing:0.1em; margin-bottom:14px;
+  }
+  .flow h4{font-size:16px; margin-bottom:10px; font-family:'Shippori Mincho',serif; letter-spacing:0.04em;}
+  .flow p{font-size:13px; color:rgba(243,237,225,0.75);}
+
+  /* ---------- trust / license ---------- */
+  .trust{
+    display:flex; align-items:center; gap:20px;
+    background:var(--cream-deep);
+    border:1px solid var(--line);
+    padding:22px 26px;
+    max-width:640px; margin:0 auto;
+  }
+  .trust .mark{
+    flex-shrink:0; width:52px; height:52px; border-radius:50%;
+    background:var(--forest); color:var(--cream);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Shippori Mincho',serif; font-size:13px; letter-spacing:0.05em;
+  }
+  .trust p{font-size:13px; color:#4a4437;}
+
+  /* ---------- info / map ---------- */
+  .info-wrap{background:var(--paper);}
+  .info-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:56px;
+  }
+  @media (max-width:800px){ .info-grid{grid-template-columns:1fr; gap:40px;} }
+  .info-list dt{
+    font-size:12px; letter-spacing:0.15em; color:var(--clay); margin-top:22px;
+  }
+  .info-list dt:first-child{margin-top:0;}
+  .info-list dd{font-size:16px; margin-top:6px; color:var(--ink); font-family:'Shippori Mincho',serif;}
+  .map-box{
+    border:1px solid var(--line); overflow:hidden; height:100%; min-height:280px;
+  }
+  .map-box iframe{width:100%; height:100%; min-height:280px; border:0; filter:sepia(8%) saturate(85%);}
+
+  /* ---------- contact ---------- */
+  .contact-wrap{
+    background:var(--forest); color:var(--cream); position:relative; overflow:hidden;
+  }
+  .contact-wrap::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:repeating-linear-gradient(100deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 2px, transparent 2px, transparent 64px);
+  }
+  .contact-inner{position:relative; z-index:1; max-width:640px; margin:0 auto; text-align:center;}
+  .contact-inner .section-head h2{color:var(--cream);}
+  .contact-inner .section-head .tag{color:#C9B98E;}
+  .contact-form{
+    text-align:left; margin-top:40px;
+    background:rgba(251,248,242,0.06);
+    border:1px solid rgba(243,237,225,0.2);
+    padding:32px;
+  }
+  .field{margin-bottom:20px;}
+  .field label{display:block; font-size:12px; letter-spacing:0.08em; color:#C9B98E; margin-bottom:8px;}
+  .field input, .field select, .field textarea{
+    width:100%; padding:12px 14px;
+    background:rgba(251,248,242,0.95);
+    border:1px solid transparent;
+    color:var(--ink);
+    font-family:'Zen Kaku Gothic New',sans-serif; font-size:14px;
+  }
+  .field textarea{resize:vertical; min-height:100px;}
+  .field input:focus, .field select:focus, .field textarea:focus{
+    outline:2px solid var(--vermilion); outline-offset:1px;
+  }
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media (max-width:520px){ .two-col{grid-template-columns:1fr;} }
+  .submit-btn{
+    width:100%; padding:15px; background:var(--vermilion); color:var(--cream);
+    border:0; font-size:15px; letter-spacing:0.1em; cursor:pointer;
+    font-family:'Shippori Mincho',serif; margin-top:8px;
+    transition:background .2s ease;
+  }
+  .submit-btn:hover{background:#943a24;}
+  .submit-btn:focus-visible{outline:2px solid var(--cream); outline-offset:2px;}
+  .form-note{font-size:12px; color:rgba(243,237,225,0.6); margin-top:14px; text-align:center;}
+  .form-status{font-size:13px; margin-top:14px; text-align:center; display:none;}
+
+  /* ---------- footer ---------- */
+  footer{
+    background:var(--forest-deep); color:rgba(243,237,225,0.6);
+    text-align:center; padding:36px 24px; font-size:12px; letter-spacing:0.04em;
+  }
+  footer .fname{font-family:'Shippori Mincho',serif; color:var(--cream); font-size:15px; letter-spacing:0.1em; margin-bottom:8px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important; scroll-behavior:auto !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">坂本屋<small>SAKAMOTOYA / 瑞浪</small></div>
+    <nav class="links">
+      <a href="#story">お店について</a>
+      <a href="#products">商品一覧</a>
+      <a href="#flow">ご利用の流れ</a>
+      <a href="#info">店舗情報</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">岐阜県 瑞浪市 土岐町</span>
+    <h1>山の葉を、微粉末に。<em>竹炭・竹酢液と、手づくりの粉末茶</em></h1>
+    <p class="lead">
+      桑、菊芋、赤紫蘇、モリンガ、パパイヤ、杜仲——瑞浪の畑と山でとれた葉を60度でじっくり乾燥させ、
+      荒さが残らないよう細かく挽いた微粉末茶を、ひと袋ずつ手づくりしています。
+      竹炭・竹酢液もあわせてお届けします。
+    </p>
+    <div class="hero-meta">
+      <div>営業時間<span>8:00 – 19:00</span></div>
+      <div>定休日<span>三が日のみ</span></div>
+      <div>所在地<span>瑞浪市土岐町 4481</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="story">
+  <div class="wrap story">
+    <div class="txt">
+      <span class="tag">OUR STORY</span>
+      <h2 style="margin:14px 0 22px; font-size:28px; color:var(--forest-deep);">畑から、マグカップまで</h2>
+      <p>坂本屋は、岐阜県瑞浪市土岐町で竹炭・竹酢液づくりから始まり、今では桑や菊芋、赤紫蘇など、地元でとれた葉を使った微粉末茶を手がけています。</p>
+      <p>葉はすべて60度でじっくり乾燥。茎の粉っぽさが目立たないよう、ふるいにかけて微粉末に仕上げているのが坂本屋のこだわりです。お好みの量をマグカップに入れて、お湯でも水出しでもお楽しみいただけます。</p>
+      <p>食品衛生責任者の資格を取得し、東濃保健所への営業届出も済ませたうえで、ひと袋ずつ丁寧に袋詰めしております。</p>
+    </div>
+    <div>
+      <div class="frame">
+        <img src="images/funmatsu.jpg" alt="手づくりの微粉末茶">
+      </div>
+      <div class="frame-cap">畑の葉を60度で乾燥し、微粉末に仕上げています</div>
+    </div>
+  </div>
+</section>
+
+<section class="products" id="products">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">PRODUCTS</span>
+      <h2>取り扱い商品</h2>
+      <div class="rule"></div>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <span class="tag-corner">粉末茶</span>
+        <div class="imgwrap"><img src="images/kuwa.jpg" alt="桑の葉微粉末茶"></div>
+        <div class="body">
+          <h3>桑の葉粉末茶</h3>
+          <p class="desc">みずなみ産の桑の葉を微粉末に。水出しもお湯出しも可能、90g入り。</p>
+          <div class="price"><span class="yen">¥1,500</span><span class="unit">90g / 1袋</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag-corner">粉末茶</span>
+        <div class="imgwrap"><img src="images/kikuimo.jpg" alt="菊芋の葉微粉末"></div>
+        <div class="body">
+          <h3>菊芋の葉粉末茶</h3>
+          <p class="desc">菊芋の葉を60度で乾燥し微粉末に。1gをマグカップでどうぞ、60g入り。</p>
+          <div class="price"><span class="yen">¥1,300</span><span class="unit">60g / 1袋</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag-corner">粉末茶</span>
+        <div class="imgwrap"><img src="images/akajiso.jpg" alt="赤シソの微粉末"></div>
+        <div class="body">
+          <h3>赤紫蘇の葉粉末茶</h3>
+          <p class="desc">40gで穀物酢900cc・3本分のシソジュースが作れます。40g入り。</p>
+          <div class="price"><span class="yen">¥1,000</span><span class="unit">40g / 1袋</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag-corner">ブレンド</span>
+        <div class="imgwrap"><img src="images/besta.jpg" alt="ベストブレンド茶 8種類混合"></div>
+        <div class="body">
+          <h3>ベストブレンド茶</h3>
+          <p class="desc">桑・杜仲・モリンガ・パパイヤ・赤紫蘇・菊芋・ローゼル・イチジクの8種類混合。60g入り。</p>
+          <div class="price"><span class="yen">¥2,600</span><span class="unit">60g / 1袋</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag-corner">粉末茶</span>
+        <div class="imgwrap"><img src="images/moringa.jpg" alt="モリンガ茶"></div>
+        <div class="body">
+          <h3>モリンガ茶</h3>
+          <p class="desc">モリンガの葉を微粉末に。2gを1リットルの水筒に入れてお楽しみください。60g入り。</p>
+          <div class="price"><span class="yen">¥2,000</span><span class="unit">60g / 1袋</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag-corner">粉末茶</span>
+        <div class="imgwrap"><img src="images/papaya.jpg" alt="パパイヤの葉微粉末"></div>
+        <div class="body">
+          <h3>パパイヤの葉茶</h3>
+          <p class="desc">パパイヤの葉をふるいにかけ微粉末に。1gを水かお湯でといて。80g入り。</p>
+          <div class="price"><span class="yen">¥1,500</span><span class="unit">80g / 1袋</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag-corner">粉末茶</span>
+        <div class="imgwrap"><img src="images/tochu.jpg" alt="杜仲茶の葉の微粉末茶"></div>
+        <div class="body">
+          <h3>杜仲茶</h3>
+          <p class="desc">杜仲茶の葉を60度で乾燥し微粉末に。お好みの量をマグカップで。90g入り。</p>
+          <div class="price"><span class="yen">¥1,500</span><span class="unit">90g / 1袋</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag-corner">乾燥野菜</span>
+        <div class="imgwrap"><img src="images/papaya_kuki.jpg" alt="パパイヤの茎の乾燥"></div>
+        <div class="body">
+          <h3>パパイヤの茎</h3>
+          <p class="desc">乾燥させたパパイヤの茎。お料理やお茶にお使いいただけます。</p>
+          <div class="price"><span class="yen">¥800</span><span class="unit">1袋</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag-corner">竹製品</span>
+        <div class="imgwrap"><img src="images/chikusaku.jpg" alt="竹酢液"></div>
+        <div class="body">
+          <h3>竹酢液</h3>
+          <p class="desc">坂本屋の原点、竹炭づくりから生まれる竹酢液。700cc入り。</p>
+          <div class="price"><span class="yen">¥1,000</span><span class="unit">700cc / 1本</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="flow-wrap" id="flow">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">HOW TO ORDER</span>
+      <h2>ご利用の流れ</h2>
+    </div>
+    <div class="flow">
+      <div class="step">
+        <div class="num">01</div>
+        <h4>フォームで送信</h4>
+        <p>ページ下部のお問い合わせフォームから、ご希望の商品と数量をお送りください。</p>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <h4>坂本屋よりご連絡</h4>
+        <p>メールにて在庫状況、お受け取り方法、お支払い方法をご案内いたします。</p>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <h4>日時のご相談</h4>
+        <p>店頭でのお受け取り日時、またはご希望に応じて発送についてご相談します。</p>
+      </div>
+      <div class="step">
+        <div class="num">04</div>
+        <h4>お受け取り</h4>
+        <p>ひと袋ずつ丁寧に袋詰めした商品をお届けします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="trust">
+      <div class="mark">許可済</div>
+      <p>食品衛生責任者の資格を取得し、東濃保健所へ営業許可申請・届出を行った施設で製造しております。安心してお召し上がりください。</p>
+    </div>
+  </div>
+</section>
+
+<section class="info-wrap" id="info">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">SHOP INFO</span>
+      <h2>店舗情報</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="info-grid">
+      <dl class="info-list">
+        <dt>屋号</dt>
+        <dd>坂本屋(竹炭・竹酢液)</dd>
+        <dt>所在地</dt>
+        <dd>岐阜県瑞浪市土岐町4481</dd>
+        <dt>営業時間</dt>
+        <dd>8:00 〜 19:00</dd>
+        <dt>定休日</dt>
+        <dd>三が日のみ休業</dd>
+        <dt>お問い合わせ</dt>
+        <dd style="font-size:14px; font-family:'Zen Kaku Gothic New',sans-serif;">kuwasakamotoya@gmail.com</dd>
+      </dl>
+      <div class="map-box">
+        <iframe
+          src="https://www.google.com/maps?q=%E5%B2%90%E9%98%9C%E7%9C%8C%E7%91%9E%E6%B5%AA%E5%B8%82%E5%9C%9F%E5%B2%90%E7%94%BA4481&output=embed"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="坂本屋 地図"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-wrap" id="contact">
+  <div class="wrap contact-inner">
+    <div class="section-head">
+      <span class="tag">CONTACT</span>
+      <h2>お問い合わせ・ご予約</h2>
+    </div>
+    <p style="font-size:14px; color:rgba(243,237,225,0.8);">商品のご注文やお受け取りのご相談は、下記フォームからお送りください。担当よりメールにてご連絡いたします。</p>
+
+    <form class="contact-form" id="contactForm">
+      <div class="two-col">
+        <div class="field">
+          <label for="name">お名前</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="field">
+          <label for="tel">電話番号</label>
+          <input type="tel" id="tel" name="tel">
+        </div>
+      </div>
+      <div class="field">
+        <label for="email">メールアドレス</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="field">
+        <label for="product">ご希望の商品</label>
+        <select id="product" name="product">
+          <option>桑の葉粉末茶</option>
+          <option>菊芋の葉粉末茶</option>
+          <option>赤紫蘇の葉粉末茶</option>
+          <option>ベストブレンド茶</option>
+          <option>モリンガ茶</option>
+          <option>パパイヤの葉茶</option>
+          <option>杜仲茶</option>
+          <option>パパイヤの茎</option>
+          <option>竹酢液</option>
+          <option>その他・ご相談</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="message">ご要望・お問い合わせ内容</label>
+        <textarea id="message" name="message" placeholder="数量やお受け取り希望日など、ご自由にご記入ください"></textarea>
+      </div>
+      <button type="submit" class="submit-btn">この内容で送信する</button>
+      <p class="form-status" id="formStatus"></p>
+      <p class="form-note">送信先: kuwasakamotoya@gmail.com へメールソフトが開きます</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="fname">坂本屋</div>
+  <div>岐阜県瑞浪市土岐町4481　|　8:00–19:00　|　定休日 三が日のみ</div>
+</footer>
+
+<script>
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const tel = document.getElementById('tel').value;
+    const email = document.getElementById('email').value;
+    const product = document.getElementById('product').value;
+    const message = document.getElementById('message').value;
+
+    const subject = encodeURIComponent('【坂本屋】お問い合わせ: ' + product);
+    const body = encodeURIComponent(
+      'お名前: ' + name + '\n' +
+      '電話番号: ' + tel + '\n' +
+      'メールアドレス: ' + email + '\n' +
+      'ご希望の商品: ' + product + '\n\n' +
+      'お問い合わせ内容:\n' + message
+    );
+
+    window.location.href = 'mailto:kuwasakamotoya@gmail.com?subject=' + subject + '&body=' + body;
+
+    status.style.display = 'block';
+    status.style.color = '#D8CBA0';
+    status.textContent = 'メールソフトを開いています。送信が完了しない場合は kuwasakamotoya@gmail.com へ直接お送りください。';
+  });
+</script>
+
+</body>
+</html>
