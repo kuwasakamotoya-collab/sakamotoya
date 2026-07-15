@@ -199,6 +199,19 @@
   .card .price .yen{font-family:'Shippori Mincho',serif; font-size:20px; color:var(--vermilion); font-weight:700;}
   .card .price .unit{font-size:11px; color:var(--clay);}
 
+  .card .detail-link{
+    display:inline-block;
+    font-size:12px; letter-spacing:0.04em;
+    color:var(--forest-deep);
+    text-decoration:none;
+    border-bottom:1px solid var(--forest-deep);
+    padding-bottom:2px;
+    margin-bottom:14px;
+    align-self:flex-start;
+    transition:color .2s ease, border-color .2s ease;
+  }
+  .card .detail-link:hover{color:var(--vermilion); border-color:var(--vermilion);}
+
   /* ---------- flow ---------- */
   .flow-wrap{background:var(--forest-deep); color:var(--cream);}
   .flow-wrap .section-head .tag{color:#C9B98E;}
@@ -381,6 +394,7 @@
         <div class="body">
           <h3>桑の葉粉末茶</h3>
           <p class="desc">みずなみ産の桑の葉を微粉末に。水出しもお湯出しも可能、90g入り。</p>
+          <a href="kuwa-detail.html" class="detail-link">詳しくみる ＞</a>
           <div class="price"><span class="yen">¥1,500</span><span class="unit">90g / 1袋</span></div>
         </div>
       </div>
@@ -605,21 +619,4 @@
     const message = document.getElementById('message').value;
 
     const subject = encodeURIComponent('【坂本屋】お問い合わせ: ' + product);
-    const body = encodeURIComponent(
-      'お名前: ' + name + '\n' +
-      '電話番号: ' + tel + '\n' +
-      'メールアドレス: ' + email + '\n' +
-      'ご希望の商品: ' + product + '\n\n' +
-      'お問い合わせ内容:\n' + message
-    );
-
-    window.location.href = 'mailto:kuwasakamotoya@gmail.com?subject=' + subject + '&body=' + body;
-
-    status.style.display = 'block';
-    status.style.color = '#D8CBA0';
-    status.textContent = 'メールソフトを開いています。送信が完了しない場合は kuwasakamotoya@gmail.com へ直接お送りください。';
-  });
-</script>
-
-</body>
-</html>
+    const body = encode
