@@ -673,4 +673,60 @@
 
 <script>
   const form = document.getElementById('contactForm');
-  const status = docume
+  const status = document.getElementById('formStatus');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const tel = document.getElementById('tel').value;
+    const email = document.getElementById('email').value;
+    const product = document.getElementById('product').value;
+    const message = document.getElementById('message').value;
+
+    const subject = encodeURIComponent('【坂本屋】お問い合わせ: ' + product);
+    const body = encodeURIComponent(
+      'お名前: ' + name + '\n' +
+      '電話番号: ' + tel + '\n' +
+      'メールアドレス: ' + email + '\n' +
+      'ご希望の商品: ' + product + '\n\n' +
+      'お問い合わせ内容:\n' + message
+    );
+
+    window.location.href = 'mailto:kuwasakamotoya@gmail.com?subject=' + subject + '&body=' + body;
+
+    status.style.display = 'block';
+    status.style.color = '#D8CBA0';
+    status.textContent = 'メールソフトを開いています。送信が完了しない場合は kuwasakamotoya@gmail.com へ直接お送りください。';
+  });
+
+  /* ---------- 在庫数の記憶(このブラウザにのみ保存されます) ---------- */
+  const qtyIds = ['qty-kuwa','qty-kikuimo','qty-akajiso','qty-best','qty-moringa','qty-papaya','qty-tochu','qty-papaya_kuki','qty-chikusaku'];
+
+  qtyIds.forEach(function(id){
+    const input = document.getElementById(id);
+    if(!input) return;
+
+    // ページを開いたときに、前回保存した値を読み込む
+    const saved = localStorage.getItem('sakamotoya_' + id);
+    if(saved !== null){
+      input.value = saved;
+    }
+
+    // 値が変わるたびに保存する
+    input.addEventListener('input', function(){
+      localStorage.setItem('sakamotoya_' + id, input.value);
+    });
+  });
+
+  /* ---------- アクセスカウンター(ページが開かれるたびに1増える) ---------- */
+  fetch('https://countapi.mileshilliard.com/api/v1/hit/sakamotoya-mizunami-gifu-hp-2026')
+    .then(function(res){ return res.json(); })
+    .then(function(data){
+      document.getElementById('visit-count').textContent = data.value;
+    })
+    .catch(function(){
+      document.getElementById('visit-count').textContent = '?';
+    });
+</script>
+
+</body>
+</html>
