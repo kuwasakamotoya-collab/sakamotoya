@@ -231,6 +231,32 @@
   }
   .card .detail-link:hover{color:var(--vermilion); border-color:var(--vermilion);}
 
+  /* ---------- online shop links ---------- */
+  .shop-links{
+    margin-top:56px; padding-top:44px;
+    border-top:1px solid var(--line);
+    text-align:center;
+  }
+  .shop-links-label{
+    font-size:12px; letter-spacing:0.2em; color:var(--clay); margin-bottom:20px;
+  }
+  .shop-links-row{
+    display:flex; justify-content:center; gap:16px; flex-wrap:wrap;
+  }
+  .shop-btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    padding:14px 32px;
+    font-family:'Shippori Mincho',serif; font-size:14px; letter-spacing:0.06em;
+    text-decoration:none;
+    border:1px solid var(--forest-deep);
+    color:var(--forest-deep);
+    background:transparent;
+    transition:background .2s ease, color .2s ease;
+  }
+  .shop-btn:hover{background:var(--forest-deep); color:var(--cream);}
+  .shop-btn-mercari{border-color:var(--vermilion); color:var(--vermilion);}
+  .shop-btn-mercari:hover{background:var(--vermilion); color:var(--cream);}
+
   /* ---------- flow ---------- */
   .flow-wrap{background:var(--forest-deep); color:var(--cream);}
   .flow-wrap .section-head .tag{color:#C9B98E;}
@@ -508,6 +534,14 @@
       </div>
 
     </div>
+
+    <div class="shop-links">
+      <p class="shop-links-label">オンラインでもご購入いただけます</p>
+      <div class="shop-links-row">
+        <a href="https://sakamotoyawo.thebase.in" target="_blank" rel="noopener" class="shop-btn shop-btn-base">BASEショップへ</a>
+        <a href="https://jp.mercari.com/user/profile/886380105" target="_blank" rel="noopener" class="shop-btn shop-btn-mercari">メルカリで見る</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -641,46 +675,4 @@
   form.addEventListener('submit', function(e){
     e.preventDefault();
     const name = document.getElementById('name').value;
-    const tel = document.getElementById('tel').value;
-    const email = document.getElementById('email').value;
-    const product = document.getElementById('product').value;
-    const message = document.getElementById('message').value;
-
-    const subject = encodeURIComponent('【坂本屋】お問い合わせ: ' + product);
-    const body = encodeURIComponent(
-      'お名前: ' + name + '\n' +
-      '電話番号: ' + tel + '\n' +
-      'メールアドレス: ' + email + '\n' +
-      'ご希望の商品: ' + product + '\n\n' +
-      'お問い合わせ内容:\n' + message
-    );
-
-    window.location.href = 'mailto:kuwasakamotoya@gmail.com?subject=' + subject + '&body=' + body;
-
-    status.style.display = 'block';
-    status.style.color = '#D8CBA0';
-    status.textContent = 'メールソフトを開いています。送信が完了しない場合は kuwasakamotoya@gmail.com へ直接お送りください。';
-  });
-
-  /* ---------- 在庫数の記憶(このブラウザにのみ保存されます) ---------- */
-  const qtyIds = ['qty-kuwa','qty-kikuimo','qty-akajiso','qty-best','qty-moringa','qty-papaya','qty-tochu','qty-papaya_kuki','qty-chikusaku'];
-
-  qtyIds.forEach(function(id){
-    const input = document.getElementById(id);
-    if(!input) return;
-
-    // ページを開いたときに、前回保存した値を読み込む
-    const saved = localStorage.getItem('sakamotoya_' + id);
-    if(saved !== null){
-      input.value = saved;
-    }
-
-    // 値が変わるたびに保存する
-    input.addEventListener('input', function(){
-      localStorage.setItem('sakamotoya_' + id, input.value);
-    });
-  });
-</script>
-
-</body>
-</html>
+    const tel = document.getElementBy
