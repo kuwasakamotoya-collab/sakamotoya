@@ -93,6 +93,17 @@
 
   .feature-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
   @media (max-width:700px){ .feature-grid{grid-template-columns:1fr;} }
+
+  .product-photo{
+    margin-bottom:32px;
+    background:var(--paper); border:1px solid var(--line); padding:8px;
+    box-shadow:0 18px 40px -22px rgba(43,38,34,0.35);
+    max-width:420px;
+  }
+  .product-photo img{width:100%; aspect-ratio:4/5; object-fit:cover;}
+  .product-photo .photo-cap{
+    font-size:12px; color:var(--clay); text-align:center; padding-top:10px; letter-spacing:0.05em;
+  }
   .feature{background:var(--paper); border:1px solid var(--line); padding:24px;}
   .feature .num{font-family:'Shippori Mincho',serif; font-size:13px; color:var(--clay); letter-spacing:0.1em; margin-bottom:10px;}
   .feature h3{font-size:16px; color:var(--forest-deep); margin-bottom:10px;}
@@ -168,6 +179,10 @@
       <span class="tag">FEATURES</span>
       <h2>桑の葉粉末茶のこだわり</h2>
       <div class="rule"></div>
+    </div>
+    <div class="product-photo">
+      <img src="images/kuwa_funmatsu.jpg" alt="桑の葉粉末茶 袋詰めの様子">
+      <div class="photo-cap">手づくりで袋詰めした桑の葉微粉末</div>
     </div>
     <div class="feature-grid">
       <div class="feature">
