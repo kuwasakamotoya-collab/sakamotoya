@@ -698,22 +698,40 @@
     status.textContent = 'メールソフトを開いています。送信が完了しない場合は kuwasakamotoya@gmail.com へ直接お送りください。';
   });
 
-  /* ---------- 在庫数の記憶(このブラウザにのみ保存されます) ---------- */
+  /* ---------- 在庫数(Googleスプレッドシートと連動します) ---------- */
+  const STOCK_API_URL = 'https://script.google.com/macros/s/AKfycbxW7j5XNCTOdrSIlofXOXKZ9sp5KVHsJxW317tlajTxee72t0mqwgFctp0-Cvmxkj5E/exec';
   const qtyIds = ['qty-kuwa','qty-kikuimo','qty-akajiso','qty-best','qty-moringa','qty-papaya','qty-tochu','qty-papaya_kuki','qty-chikusaku'];
 
-  qtyIds.forEach(function(id){
-    const input = document.getElementById(id);
+  // ページを開いたときに、スプレッドシートから最新の在庫数を読み込む
+  fetch(STOCK_API_URL)
+    .then(function(res){ return res.json(); })
+    .then(function(data){
+      qtyIds.forEach(function(fieldId){
+        const input = document.getElementById(fieldId);
+        if(!input) return;
+        const productId = fieldId.replace('qty-', '');
+        if(data[productId] !== undefined){
+          input.value = data[productId];
+        }
+      });
+    })
+    .catch(function(){
+      console.log('在庫数の読み込みに失敗しました');
+    });
+
+  // 数字を変更して、入力欄から離れたら(またはEnterを押したら)スプレッドシートに保存する
+  qtyIds.forEach(function(fieldId){
+    const input = document.getElementById(fieldId);
     if(!input) return;
+    const productId = fieldId.replace('qty-', '');
 
-    // ページを開いたときに、前回保存した値を読み込む
-    const saved = localStorage.getItem('sakamotoya_' + id);
-    if(saved !== null){
-      input.value = saved;
-    }
-
-    // 値が変わるたびに保存する
-    input.addEventListener('input', function(){
-      localStorage.setItem('sakamotoya_' + id, input.value);
+    input.addEventListener('change', function(){
+      fetch(STOCK_API_URL, {
+        method: 'POST',
+        body: JSON.stringify({ id: productId, qty: input.value })
+      }).catch(function(){
+        console.log('在庫数の保存に失敗しました');
+      });
     });
   });
 
