@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>杜仲茶 | 坂本屋</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap');
+
+  :root{
+    --ink:#2B2622;
+    --forest:#3A4A32;
+    --forest-deep:#2A3624;
+    --clay:#8B6F47;
+    --cream:#F3EDE1;
+    --cream-deep:#EAE1CC;
+    --paper:#FBF8F2;
+    --vermilion:#B5482D;
+    --line: rgba(43,38,34,0.15);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,.mincho{font-family:'Shippori Mincho', serif;}
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+
+  .wrap{max-width:880px; margin:0 auto; padding:0 24px;}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(243,237,225,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px; max-width:1080px; margin:0 auto;
+  }
+  .brand{font-size:20px; letter-spacing:0.08em; font-weight:700; color:var(--forest-deep);}
+  .brand small{display:block; font-family:'Zen Kaku Gothic New',sans-serif; font-size:11px; letter-spacing:0.15em; color:var(--clay); font-weight:400; margin-top:2px;}
+
+  /* ---------- back button ---------- */
+  .back-row{padding:32px 0 0;}
+  .back-btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:14px; letter-spacing:0.04em;
+    color:var(--forest-deep);
+    text-decoration:none;
+    border:1px solid var(--forest-deep);
+    padding:10px 20px;
+    transition:background .2s ease, color .2s ease;
+  }
+  .back-btn:hover{background:var(--forest-deep); color:var(--cream);}
+
+  /* ---------- hero ---------- */
+  .detail-hero{
+    padding:40px 0 60px;
+    display:grid; grid-template-columns:1fr 1.1fr; gap:56px; align-items:center;
+  }
+  @media (max-width:760px){ .detail-hero{grid-template-columns:1fr; gap:32px;} }
+  .detail-hero .frame{
+    background:var(--paper); border:1px solid var(--line); padding:8px;
+    box-shadow:0 18px 40px -22px rgba(43,38,34,0.35);
+  }
+  .detail-hero .frame img{width:100%; aspect-ratio:4/5; object-fit:cover;}
+  .detail-hero .tag{font-size:12px; letter-spacing:0.3em; color:var(--clay); font-weight:500;}
+  .detail-hero h1{font-size:clamp(26px,3.6vw,36px); color:var(--forest-deep); margin:14px 0 20px; letter-spacing:0.04em;}
+  .detail-hero .price-row{
+    display:flex; align-items:baseline; gap:12px; margin-bottom:24px;
+    border-top:1px dashed var(--line); border-bottom:1px dashed var(--line); padding:16px 0;
+  }
+  .detail-hero .price-row .yen{font-family:'Shippori Mincho',serif; font-size:28px; color:var(--vermilion); font-weight:700;}
+  .detail-hero .price-row .unit{font-size:13px; color:var(--clay);}
+  .detail-hero p.lead{font-size:15px; color:#3d372f;}
+
+  /* ---------- sections ---------- */
+  section.info-block{padding:56px 0; border-top:1px solid var(--line);}
+  section.info-block .section-head{margin-bottom:32px;}
+  section.info-block .section-head .tag{font-size:12px; letter-spacing:0.3em; color:var(--clay); font-weight:500;}
+  section.info-block .section-head h2{font-size:24px; margin-top:12px; color:var(--forest-deep); letter-spacing:0.05em;}
+  section.info-block .section-head .rule{width:44px; height:2px; background:var(--vermilion); margin-top:18px;}
+
+  .feature-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  @media (max-width:700px){ .feature-grid{grid-template-columns:1fr;} }
+  .feature{background:var(--paper); border:1px solid var(--line); padding:24px;}
+  .feature .num{font-family:'Shippori Mincho',serif; font-size:13px; color:var(--clay); letter-spacing:0.1em; margin-bottom:10px;}
+  .feature h3{font-size:16px; color:var(--forest-deep); margin-bottom:10px;}
+  .feature p{font-size:13px; color:#4a4437;}
+
+  .howto{background:var(--forest-deep); color:var(--cream); padding:40px 32px;}
+  .howto .section-head .tag{color:#C9B98E;}
+  .howto .section-head h2{color:var(--cream);}
+  .howto ol{list-style:none; counter-reset:step; margin-top:8px;}
+  .howto li{counter-increment:step; position:relative; padding-left:44px; margin-bottom:20px; font-size:14px; color:rgba(243,237,225,0.9);}
+  .howto li:last-child{margin-bottom:0;}
+  .howto li::before{
+    content:counter(step);
+    position:absolute; left:0; top:-2px;
+    font-family:'Shippori Mincho',serif; font-size:15px;
+    width:28px; height:28px; border:1px solid #C9B98E; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; color:#C9B98E;
+  }
+
+  .note-box{
+    background:var(--cream-deep); border:1px solid var(--line);
+    padding:22px 26px; font-size:13px; color:#4a4437;
+  }
+
+  .cta-row{padding:48px 0 72px; text-align:center;}
+  .cta-btn{
+    display:inline-block; background:var(--vermilion); color:var(--cream);
+    text-decoration:none; padding:16px 40px; font-family:'Shippori Mincho',serif;
+    font-size:15px; letter-spacing:0.08em; transition:background .2s ease;
+  }
+  .cta-btn:hover{background:#943a24;}
+
+  footer{
+    background:var(--forest-deep); color:rgba(243,237,225,0.6);
+    text-align:center; padding:36px 24px; font-size:12px; letter-spacing:0.04em;
+  }
+  footer .fname{font-family:'Shippori Mincho',serif; color:var(--cream); font-size:15px; letter-spacing:0.1em; margin-bottom:8px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">坂本屋<small>SAKAMOTOYA / 瑞浪</small></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="back-row">
+    <a href="index.html#products" class="back-btn">← 商品一覧に戻る</a>
+  </div>
+
+  <section class="detail-hero">
+    <div class="frame">
+      <img src="images/tochu.jpg" alt="杜仲茶の葉の微粉末茶">
+    </div>
+    <div>
+      <span class="tag">TOCHU LEAF TEA</span>
+      <h1>杜仲茶</h1>
+      <div class="price-row">
+        <span class="yen">¥1,500</span>
+        <span class="unit">90g / 1袋</span>
+      </div>
+      <p class="lead">
+        みずなみ産の杜仲茶の葉を60度でじっくり乾燥させ、微粉末に仕上げました。
+        お好みの量をマグカップに入れて、手軽にお楽しみいただけます。
+      </p>
+    </div>
+  </section>
+
+  <section class="info-block">
+    <div class="section-head">
+      <span class="tag">FEATURES</span>
+      <h2>杜仲茶のこだわり</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="feature-grid">
+      <div class="feature">
+        <div class="num">01</div>
+        <h3>みずなみ産の杜仲茶の葉</h3>
+        <p>地元・瑞浪市で育った杜仲茶の葉だけを使用しています。</p>
+      </div>
+      <div class="feature">
+        <div class="num">02</div>
+        <h3>60度でじっくり乾燥</h3>
+        <p>高温を避け60度で乾燥させることで、風味を保っています。</p>
+      </div>
+      <div class="feature">
+        <div class="num">03</div>
+        <h3>微粉末で飲みやすく</h3>
+        <p>細かく挽いて、飲みやすい微粉末に仕上げています。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-block howto">
+    <div class="section-head">
+      <span class="tag">HOW TO ENJOY</span>
+      <h2>お召し上がり方</h2>
+    </div>
+    <ol>
+      <li>お好みの量をマグカップに入れます。</li>
+      <li>水またはお湯を注ぎ、よく混ぜてお召し上がりください。</li>
+    </ol>
+  </section>
+
+  <section class="info-block">
+    <div class="note-box">
+      内容量は90g(1袋)です。開封後は湿気を避け、なるべくお早めにお召し上がりください。
+    </div>
+  </section>
+
+  <div class="cta-row">
+    <a href="index.html#contact" class="cta-btn">この商品についてお問い合わせる</a>
+  </div>
+</div>
+
+<footer>
+  <div class="fname">坂本屋</div>
+  <div>岐阜県瑞浪市土岐町4481　|　8:00–19:00　|　定休日 三が日のみ</div>
+</footer>
+
+</body>
+</html>
