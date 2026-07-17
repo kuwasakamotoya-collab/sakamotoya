@@ -743,10 +743,15 @@
   });
 
   /* ---------- アクセスカウンター(ページが開かれるたびに1増える) ---------- */
-  fetch('https://countapi.mileshilliard.com/api/v1/hit/sakamotoya-mizunami-gifu-hp-2026')
+  fetch(STOCK_API_URL + '?type=visit')
     .then(function(res){ return res.json(); })
     .then(function(data){
       document.getElementById('visit-count').textContent = data.value;
     })
     .catch(function(){
-      document.getEleme
+      document.getElementById('visit-count').textContent = '?';
+    });
+</script>
+
+</body>
+</html>
